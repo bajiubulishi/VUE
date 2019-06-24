@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>事件处理</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button @click="btn">小姐姐点我</button>
+            <div>{{num}}</div>
+            <!-- 通过vm进行修改 -->
+            <button @click="add">+</button>
+            <button @click="ed">-</button>
+            <br>
+            <!-- 直接在js的修改 -->
+            <button @click="num+=1">+</button>
+            <button @click="num-=1">-</button>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    num:88
+                },
+                methods:{
+                    btn(){
+                        alert('啊~~~')
+                    },
+                    add(){
+                        this.num+=1
+                    },
+                    ed(){
+                        this.num-=1
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

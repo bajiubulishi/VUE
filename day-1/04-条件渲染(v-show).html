@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>v-show</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div v-if="isShow">悟空</div>
+            <!-- //操作dom -->
+            <div v-show="isShow">悟空</div>
+            <!-- 操作css -->
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    isShow:false
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>事件处理</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+        .grandfather{
+            width: 300px;
+            height: 300px;
+            background: #000;
+        }
+        .father{
+            width: 200px;
+            height: 200px;
+            background:green;
+        }
+        .son{
+            width: 100px;
+            height: 100px;
+            background:red;
+        }
+        a{
+            text-decoration: none;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <h1>.stop 阻止冒泡</h1>
+                <div class="grandfather" @click="grandfather">
+                        <div class="father" @click="father">
+                                <div class="son" @click.stop="son"></div>
+                        </div>
+                </div>
+
+                <h1>.prevent 阻止冒泡</h1>   
+                <a @click.prevent href="https:\\www.baidu.com">进来吧小伙子</a>
+
+                <h1>.capture 捕获（打乱冒泡排序顺序）</h1>
+                <div class="grandfather" @click="grandfather">
+                        <div class="father" @click.capture="father">
+                                <div class="son" @click="son"></div>
+                        </div>
+                </div>
+
+                <h1>.self 阻止冒泡&捕获(除非自身触发)</h1>
+                <div class="grandfather" @click="grandfather">
+                        <div class="father" @click.self="father">
+                                <div class="son" @click="son"></div>
+                        </div>
+                </div>
+
+                <h1>.once  事件只触发一次</h1>
+                <button @click.once="btn">点我有惊喜</button>
+            </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                },
+                methods:{
+                    grandfather(){
+                        console.log('this is grandfather')
+                    },
+                    father(){
+                        console.log('this is father')
+                    },
+                    son(){
+                        console.log('this is son')
+                    },
+                    btn(){
+                        alert('器大活好')
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

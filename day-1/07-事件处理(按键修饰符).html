@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>按键修饰符</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button @keyup.enter.once="ent">按不按</button>
+            <button @keyup.space.once="sp">继续按</button>
+            <button @keyup.delete.once="de">使劲按</button>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                },
+                methods:{
+                    ent(){
+                        alert('this si 回车')
+                    },
+                    sp(){
+                        alert('this is 空格')
+                    },
+                    de(){
+                        alert('this is 删除')
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>条件渲染</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>直接显示</h1>
+            <div>购物车{{cartNum}}</div>
+            <h1>判断是否显示</h1>
+            <div>购物车<span v-if="cartNum">{{cartNum}}</span></div>
+            <hr />
+            <div v-if="score >= 90">优秀</div>
+            <div v-else-if="score >= 80">一般</div>
+            <div v-else-if="score >= 70">良好</div>
+            <div v-else-if="score >= 60">及格</div>
+            <div v-else-if="score >= 0">不及格</div>
+            <div v-else-if="score >= 0">不及格</div>
+            <div v-else>还得多多努力</div>
+            
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    //判断购物车
+                    cartNum:3,
+                    //判断成绩>=90优秀>=80一般>=70良好>=60及格>=0不及格，其他不行
+                    score:'100'
+                }
+            })
+        </script>
+    </body>
+</html>

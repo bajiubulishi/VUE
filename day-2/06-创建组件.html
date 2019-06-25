@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>创建组件</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <template id="tpl">
+            <p>你好，我的大长腿</p>
+        </template>
+        <div id="app">
+            <!-- 调用组件使用标识名 -->
+            <mytag1></mytag1>
+            <mytag2></mytag2>
+        </div>
+        <script>
+            //自定义组件mytag1输出：<P>你好小仙女</P>
+            Vue.component('mytag1',{
+                //template 存放html代码
+                template:"<p>你好，我的小仙女</p>"
+                //data存放模型数据
+                //methods普通方法
+            })
+            //自定义组件mytag2输出：你好小仙女
+            Vue.component('mytag2',{
+                template:'#tpl'
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>

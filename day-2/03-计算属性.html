@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>计算属性</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>需求：翻转字符串</h1>
+            <div>默认显示：{{msg}}</div>
+
+            <div>简单实现：{{msg.split('').reverse().join('')}}</div>
+
+            <div>普通方法：{{fn1()}} （减少代码冗余）</div>
+            <div>普通方法：{{fn1()}} （减少代码冗余）</div>
+            <div>普通方法：{{fn1()}} （减少代码冗余）</div>
+            <!-- 
+                注：通过普通方法可以减少代码冗余，但是呢如果代码
+                逻辑非常复杂，调用n次性能存在影响 
+                解决：通过计算属性
+                原理：缓存（第一次计算，后面除非数据变化否则都从缓存中取）
+             -->
+             <div>普通方法：{{fn2}} （减少代码冗余）</div>
+             <div>普通方法：{{fn2}} （减少代码冗余）</div>
+             <div>普通方法：{{fn2}} （减少代码冗余）</div>
+             <div>普通方法：{{fn2}} （减少代码冗余）</div>
+             <div>普通方法：{{fn2}} （减少代码冗余）</div>
+             <div>普通方法：{{fn2}} （减少代码冗余）</div>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg:'hello,sister'
+                },
+                //生怕普通方法
+                methods:{
+                    fn1(){
+                        console.log('fn1')
+                        return this.msg.split('').reverse().join('')
+                    }
+                },
+                //通过computed来声明计算属性
+                computed:{
+                    fn2(){
+                        console.log('fn2')
+                       return this.msg.split('').reverse().join('')
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

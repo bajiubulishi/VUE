@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>clss、style</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+        .gbred{background: red;}
+        .gbblue{background: blue;}
+        .gbgreen{background: green;}
+        .fontred{color: red;}
+        .fontblue{color:blue;}
+        .fontgreen{color: green;}
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <h1 :class="classone">class绑定模型数据（字符串语法）</h1>
+            <h1 :class="classovj">class绑定模型数据（字符串语法）</h1>
+            <h1 :class="classare">class绑定模型数据（字符串语法）</h1>
+            <h1 :style="styleobj">class绑定模型数据（字符串语法）</h1>
+            <h1 :style="stylearr">class绑定模型数据（字符串语法）</h1>
+            <h1>class绑定模型数据（字符串语法）</h1>
+            <h1>class绑定模型数据（字符串语法）</h1>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    classone:"gbred",
+                    classovj:{"gbblue":true,"fontred":false},
+                    classare:["gbgreen"],
+                    styleobj:{background:"red",fontSize:"20px"},
+                    stylearr:[{background:"yellow"}]
+                }   
+            })
+        </script>
+    </body>
+</html>

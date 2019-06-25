@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>cart</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>购物车</h1>
+            <div>
+            <input type="checkbox" name="" id="" @change="choosecart">全选&反选
+            </div>
+            <hr />
+            <ul>
+                <li v-for="(cart,index) in carts">
+                    <input type="checkbox" name="" id="" :value="cart" v-model="choosecarts" @change="total">
+                    标题：{{cart.title}}，价格：{{cart.price}}，数量：{{cart.number}}
+                    <input v-model.number="cart.number"  type="text" size="1" @keyup="total">
+                    <button @click="add(cart)">+</button>
+                </li>
+            </ul>
+            <hr />
+            <hr />
+            <h1>勾选商品</h1>
+            {{choosecarts}}<br>
+            总数量：{{totalnum}}，总价：{{totalp}}
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    carts:[
+                        {title:'商品1', price: 1, number: 1},
+                        {title:'商品2', price: 2, number: 1},
+                        {title:'商品3', price: 3, number: 1}
+                        ],
+                        choosecarts:[],
+                        totalnum:0,
+                        totalp:0
+                    },
+                methods:{
+                    choosecart(){
+                        if(this.choosecarts.length==3){
+                            this.choosecarts=[]
+                        }else{
+                            this.choosecarts=this.carts
+                        }
+                        this.total()
+                    },
+                    add(cart){
+                        cart.number+=1,
+                        this.total()
+                    },
+                    total(){
+                        let totalnumber=0
+                        let totalprice=0
+                        for(let i=0;i<this.choosecarts.length;i++){
+                            totalnumber+=this.choosecarts[i].number
+                            totalprice+=this.choosecarts[i].number*this.choosecarts[i].price
+                        }
+                        this.totalnum=totalnumber
+                        this.totalp=totalprice
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

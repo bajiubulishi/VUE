@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>父子组件</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <mytag1></mytag1>
+        </div>
+        <script>
+            Vue.component('mytag1',{
+                template:'<p @clcik="fn1">我是这条{{jie}}(<logout></logout>)上最靓的{{show}}</p>',
+                data(){
+                    return{
+                        show:"崽",
+                        jie:"gai"
+                    }
+                },
+                methods:{
+                    fn1(){
+                        alert('你做不到的')
+                    }
+                },
+                //声明定义子组件
+                components:{
+                //键：标识
+                //值：对象
+                logout:{
+                    //template
+                    //methods
+                    template:'<a href="">仙女</a>'
+                }
+                }
+                
+
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>

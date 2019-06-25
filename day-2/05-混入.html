@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>混入</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app1">
+            {{uname}}___{{age}}___{{sex}}
+            <button @click="fn1">点我呀</button>
+        </div>
+        <div id="app2">
+            {{uname}}___{{age}}___{{sex}}
+            <button @click="fn1">点我呀</button>
+        </div>
+        <script>
+            
+            //选项合并（局部引用）
+            //定义公共部分代码
+            let xu={
+                data(){
+                    return{
+                        uname:"武松",
+                        age:"193"
+                    }
+                },
+                methods:{
+                    fn1(){
+                        alert('小仙女')
+                    }
+                }
+            }
+           new Vue({
+               mixins:[xu],
+               el:"#app1",
+               data:{
+                // uname:"武松",
+                // age:"19"
+               }
+           })
+           new Vue({
+               mixins:[xu],
+               el:"#app2",
+               data:{
+                // uname:"武松",
+                // age:"19"
+               }
+           })
+           //全局混入
+           Vue.mixin({
+               data(){
+                   return {
+                       sex:"小伙子"
+                   }
+               }
+           })
+           
+        </script>
+    </body>
+</html>

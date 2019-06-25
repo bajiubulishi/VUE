@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>axion异步请求</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>本地接口</h1>
+        <button @click="fn1">点我呀小姐姐</button>
+        <ul>
+            <li v-for="file in films">
+                {{file.id}}----
+                {{file.title}}
+            </li>
+        </ul>
+        <h1>线上接口</h1>
+        <button @click="fn2">点我呀小姐姐</button>
+        <ul>
+            <li v-for="film in filmes">
+                <img :src="film.poster" alt=""><br>
+                {{film.category}}<br>
+                {{film.name}}<br>             
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                //存放电影数据
+                films: [],
+                filmes:[]
+            },
+            methods: {
+                fn1() {
+                    fetch("./data.json",{
+                        methods: "get"   
+                    })
+                        .then(respone => {
+                            console.log(respone)
+                            this.films = respone;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+                fn2() {
+                    fetch( "https://m.maizuo.com/gateway?cityId=110100&pageNum=1&pageSize=10&type=1&k=4171969",{
+                        mrthods: "get",
+                        headers:{
+                            "X-Client-Info": '{"a":"3000","ch":"1002","v":"5.0.4","e":"15613917499972914062391"}',
+                            "X-Host": 'mall.film-ticket.film.list'
+                        }
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        console.log(res)
+                        if(res.msg=='ok'){
+                            this.filmes=res.data.films
+                        }
+                    })
+                    .catch(error=>{
+                        console.log(error)
+                    })
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

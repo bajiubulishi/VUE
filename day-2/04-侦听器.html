@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>侦听器</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="xu">
+            <input type="text" v-model="tian">
+            <hr>
+            <h1>侦听器</h1>
+            <div>全名：{{xu}}{{tian}}</div>
+            <div>全名：{{sex}}</div>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    //第一个名字
+                    xu:'',
+                    //第二个名字
+                    tian:'',
+                    //全名
+                    sex:''
+                },
+                watch:{
+                    xu(newdata,olddata){
+                        this.sex=newdata+this.tian
+                    },
+                    tian(newdata,olddata){
+                        this.sex=this.xu+newdata
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

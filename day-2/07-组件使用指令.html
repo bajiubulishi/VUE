@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>指令</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <mytag1></mytag1>
+        </div>
+        <script>
+            Vue.component('mytag1',{
+                template:'<p @click="fn1">劳资要做这条{{jie}}上最靓的{{show}}</p>',
+                data(){
+                    return{
+                        show:"崽",
+                        jie:"gai"
+                    }
+                },
+                methods:{
+                    fn1(){
+                        alert('你去做梦都做不到的')
+                    }
+                }
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>

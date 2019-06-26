@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>单元素过渡</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1">
+        <style>
+        /* 过渡 */
+        .first-enter-active {
+            /* 进来过程中：属性 0.3s 先慢后快 */
+            transition: all .3s ease;
+            }
+            .first-leave-active {
+            /* 退出过程中：属性 0.8s 自定义曲线 */
+            transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+            }
+            .first-enter, .first-leave-to{
+                /* 进来和退出向X（右移动）透明度变为零 */
+            transform: translateX(100px);
+            opacity: 0;
+            }
+        /* 动画 */
+        .two-enter-active {
+            /* 进来过程中：twos 0.5秒 */
+        animation: twos .5s;
+        }
+        .two-leave-active {
+            /* 退出过程中：twos 0.5秒 */
+        animation: twos .5s reverse;
+        }
+        @keyframes twos {
+        0% {
+            transform: scale(0);
+        }
+        50% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+        }
+         /*动画库  */
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <button @click="ishow=!ishow">click</button>
+
+            <transition name="first">  
+            <div v-show="ishow">【css3过渡】111111</div>
+            </transition>
+
+            <transition name="two">
+            <div v-show="ishow">【css3动画】222222</div>
+            </transition>
+            
+            <transition 
+            enter-active-class="animated bounceOutLeft"
+            leave-active-class="animated bounceOutRight"
+            >
+            <div v-show="ishow">【css3动画库】333333</div>
+            </transition>
+            
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    ishow:true
+                }
+            })
+        </script>
+    </body>
+</html>

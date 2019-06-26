@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>多个元素过渡</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1">
+    </head>
+    <body>
+        <div id="app">
+            <button @click="isshow=!isshow">点我呀</button>
+            <transition
+                enter-active-class="animated fadeInRight"
+            >
+                <div key="1" v-if="isshow">我是小姐姐</div>
+                <div key="2" v-else >点一下你就是傻狗了</div>
+            </transition>
+            
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    isshow:true
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>复用过渡</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1">
+    </head>
+    <body>
+        <div id="app">
+            <tips v-if="isshow">请输入账号和密码</tips>
+            <p><input type="text" placeholder="请输入用户名"></p>
+            <p><input type="text" placeholder="请输入密码"></p>
+            <p><input type="button" value="登录" @click="isshow='true'"></p>
+        </div>
+        <script>
+            Vue.component('tips',{
+                template:`
+                <transition
+                enter-active-class="animated fadeInRight"
+                appear
+                >
+                <div style="width:300px;height:80px;border:1px solid red;
+                color:red;text-align:center;line-height:80px;">请
+                <slot></slot>
+                </div>
+                </transition>
+                `
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    isshow:false
+                }
+            })
+        </script>
+    </body>
+</html>

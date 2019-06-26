@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>初始化渲染</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1">
+    </head>
+    <body>
+        <div id="app">
+            <button @click="isshow=!isshow">小哥哥点我呀</button>
+            <transition
+            enter-active-class="animated bounceOutLeft"
+            leave-active-class="animated bounceOutRight"
+            appear
+            >
+                <div v-show="isshow">别摇了划船得靠浪呀</div>
+        </transition>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    isshow:true
+                }
+            })
+        </script>
+    </body>
+</html>

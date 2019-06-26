@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>列表过渡</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1">
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="addcontet">&nbsp;<button @click="add">添加</button>
+            <!-- <ul> -->
+                <transition-group
+                enter-active-class="animated fadeInRight"
+                appear
+                tag="ul"
+                >
+                <li v-for="(list,index) in lists" :key="index" >{{list}}&nbsp;<button @click="del(index)">删除</button></li>
+            </transition-group>
+            <!-- </ul> -->
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    addcontet:'',
+                    lists:[
+                        "武大郎",
+                        "盼盼",
+                        "黄桃罐头"
+                    ]
+                },
+                methods:{
+                    add(){
+                        this.lists.push(this.addcontet)
+                        this.addcontet=''
+                    },
+                    del(index){
+                        this.lists.splice(index,1)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

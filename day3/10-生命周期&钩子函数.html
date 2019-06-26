@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>生命周期以及钩子函数</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            {{msg}}
+        </div>
+        <script>
+            let vm = new Vue({
+                el: '#app',
+                data: {
+                    msg:'劳资是这条gai上最靓的崽'
+                },
+                beforeCreate(){
+                    console.log('beforeCreate')
+                    console.log(this.$el)//打印HTML
+                    console.log(this.$data)//打印整个模型
+                    console.log(this.msg)//打印制定模型数据
+                },
+                created(){
+                    console.log('create')
+                    console.log(this.$el)//打印HTML
+                    console.log(this.$data)//打印整个模型
+                    console.log(this.msg)//打印制定模型数据
+                },
+                beforeMount(){
+                    console.log('brforeMound')
+                    console.log(this.$el)//打印HTML
+                    console.log(this.$data)//打印整个模型
+                    console.log(this.msg)//打印制定模型数据
+
+                },
+                mounted(){
+                    console.log('mounted')
+                    console.log(this.$el)//打印HTML
+                    console.log(this.$data)//打印整个模型
+                    console.log(this.msg)//打印制定模型数据
+                },
+                beforeUpdate(){
+
+                },
+                updated(){
+
+                },
+                beforeDestroy(){
+
+                },
+                destroyed(){
+
+                }
+            })
+        </script>
+    </body>
+</html>

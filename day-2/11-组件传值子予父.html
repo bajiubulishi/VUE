@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>组件传值</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <!-- 自定义组件fatherfag输出：
+            <div><p>我是父组件，我儿子叫：黑头发</p><p>我是子组件，我爸爸给我取名：黑头发</p></div>
+            其中子组件sontag部分：绿色
+            变量：sonname--黑头发
+        -->
+        <div id="app">
+            <fathertag ></fathertag>
+        </div>
+        <script>
+            //子给父
+            //步骤1 子创建自定义事件 通过 this.$emit（自定义事件名称，数据）
+            //步骤2 父调用自定义事件
+            //什么时候创建自定义事件
+            //点击事件之后再创建
+            //页面加载完毕之后就创建
+            //以前刷新页面都使用window.onload 或 $(function(){})
+            //在vue中，通过mounted带表上述代码
+            Vue.component('fathertag',{
+                //声明父的普通方法
+                methods:{
+                    //自动把传的数据赋给形参
+                    fn1(sonData){
+                        alert('花花')
+                    }   
+                },
+                data(){
+                    return {
+                        sonname:'黑头发'
+                    }
+                },
+                template:`
+                <div>
+                    <p>我是父组件，我儿子叫：{{sonname}}</p>
+                    <sontag :name="sonname" @huahua="fn1"></sontag>
+                </div>
+                `,
+                components :{
+                    sontag:{
+                        //相当于页面加载完成时，自动创建事件
+                        mounted(){
+                        //创建自定义事件
+                        this.$emit('huahua',this.name2) 
+                    },
+                        template:' <p>我是子组件，我爸爸给我取名：{{name}}</p>',
+                        props:['name'],
+                        data(){
+                            return {
+                                name2:'周金生'
+                            }
+                        }
+                    }
+                }
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>

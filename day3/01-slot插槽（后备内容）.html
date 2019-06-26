@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>后备插槽</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <tips>请输入账户</tips>
+            <tips>请输入密码</tips>
+            <tips>密码错误</tips>
+        </div>
+        <script>
+            // 定义tips组件（样式：红色边框，红色文字）内容通过插槽占位
+            Vue.component('tips',{
+                template:`
+                    <div style="width:300px;height:40px;border:1px solid red;color:red;text-align:center;line-height:40px;margin-top:5px;">
+                    <slot></slot>
+                    </div>
+                `
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>

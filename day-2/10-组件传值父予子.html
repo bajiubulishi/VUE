@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>组件传值</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <!-- 自定义组件fatherfag输出：
+            <div><p>我是父组件，我儿子叫：黑头发</p><p>我是子组件，我爸爸给我取名：黑头发</p></div>
+            其中子组件sontag部分：绿色
+            变量：sonname--黑头发
+        -->
+        <div id="app">
+            <fathertag ></fathertag>
+        </div>
+        <script>
+            //父=》子
+            //子通过props：【变量1.。。。变量N】
+            //父 通过： 传递给子的那个变量名=“父data中的键”
+            Vue.component('fathertag',{
+                //声明父的模型
+                data(){
+                    return {
+                        sonname:'黑头发'
+                    }
+                },
+                //父给子传递值
+                template:`
+                <div>
+                    <p>我是父组件，我儿子叫：{{sonname}}</p>
+                    <sontag :name>="sonname"</sontag>
+                </div>
+                `,
+                //声明子组件
+                components :{
+                    sontag:{
+                        template:' <p>我是子组件，我爸爸给我取名：{{name}}</p>',
+                        //子接受父的值
+                        props:['name'],//相当于在data中定义的
+                        data(){
+                            return {
+
+                            }
+                        }
+                    }
+                }
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>

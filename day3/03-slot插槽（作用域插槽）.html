@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>具名插槽</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <app>
+                <template v-slot:header="til">
+                    {{til}}<br>
+                    {{til.uname}}<br>
+                    this is youer mather
+                    <br>
+                </template>
+
+                <template v-slot:main>
+                        ------this is youer main
+                        <br>
+                </template>
+
+                <template v-slot:footer>
+                        -------this is youer footer
+                </template>
+                <br>
+                <template>这里是小仙女的地盘</template>
+                <template><div>这里是小哥哥的地盘</div></template>
+            </app>
+        </div>
+        <script>
+            // 在练习“代码分析（具有名插槽）” 基础上模型定义uname&age数据，并传递给调用
+            Vue.component('app',{
+                data(){
+                    return {
+                        uname:'小猪猪',
+                        age:'永远18'
+                    }
+                },
+                template:`
+                <div>
+                <h1>具名插槽</h1>
+                <slot name="header" :uname="uname" :age="age"></slot>
+                <slot name="main"></slot>
+                <slot name="footer"></slot> 
+                <slot></slot>   
+                </div>
+                
+                `
+            })
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>

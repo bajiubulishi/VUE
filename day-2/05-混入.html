@@ -9,14 +9,21 @@
     <body>
         <div id="app1">
             {{uname}}___{{age}}___{{sex}}
-            <button @click="fn1">点我呀</button>
+            <button @click="fn1">徐总</button>
         </div>
         <div id="app2">
             {{uname}}___{{age}}___{{sex}}
-            <button @click="fn1">点我呀</button>
+            <button @click="fn1">徐总</button>
         </div>
         <script>
-            
+            //全局混入，必须放在部分调用之前 不然部分声明的方法不能够用
+           Vue.mixin({
+               data(){
+                   return {
+                       sex:"小伙子"
+                   }
+               }
+           })
             //选项合并（局部引用）
             //定义公共部分代码
             let xu={
@@ -28,7 +35,7 @@
                 },
                 methods:{
                     fn1(){
-                        alert('小仙女')
+                        alert('是小仙女呀')
                     }
                 }
             }
@@ -48,14 +55,7 @@
                 // age:"19"
                }
            })
-           //全局混入
-           Vue.mixin({
-               data(){
-                   return {
-                       sex:"小伙子"
-                   }
-               }
-           })
+           
            
         </script>
     </body>

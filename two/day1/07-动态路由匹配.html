@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>router</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>需求：通过VUE-ROUTER来实现</h1>
+            <ul>
+                <li><router-link to="/">电影</router-link></li>
+                <li><router-link to="/yy">影院</router-link></li>
+                <li><router-link to="/thr">特惠</router-link></li>
+                <li><router-link to="/cen">我的</router-link></li>
+            </ul>
+            <hr />
+            <button>
+                <router-link to="/films/1">少林</router-link>
+            </button>
+            <button>
+                <router-link to="/films/2">武当</router-link>
+            </button>
+            <hr />
+            <router-view />
+        </div>
+        <script>
+            //创建组件
+            const index=Vue.component('index',{
+                template:`<div>电影展区</div>`
+            })
+            const films={template:`<div>电影详情页,编号{{$route.params.id}}</div>`
+            ,created(){
+                alert('获取参数'+this.$route.params.id)
+            },
+            //方案一：监控
+            // watch:{
+            //     '$route':function(now,old){
+            //         alert('后续，获取参数'+now.params.id)
+            //     }
+            // }
+            //方案二：
+            beforeRouteUpdate(now,old,next){
+                alert('后续，获取参数'+now.params.id)
+                //导航守卫如果不写next会终止代码执行4
+                next()
+            }
+            }
+            const yy=Vue.component('yy',{
+                template:`<div>影院展区</div>`
+            })
+            const thr=Vue.component('thr',{
+                template:`<div>特惠展区</div>`
+            })
+            const cen=Vue.component('cen',{
+                template:`<div>我的展区</div>`
+            })
+
+            //声明路由
+            const router =new VueRouter({
+				// mode:'history',
+                routes: [
+                    {path:'/',component:index,name:'index'},
+                    {path:'/films/:id',component:films,name:'films'},
+                    {path:'/yy',component:yy,name:'yy'},
+                    {path:'/thr',component:thr,name:'thr'},
+                    {path:'/cen',component:cen,name:'cen',alias:'/chan'},
+                    {path:'*', redirect:'/'}
+                ]
+            })
+            const vm = new Vue({
+                router,
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>

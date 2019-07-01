@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>新语法</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>需求：通过VUE-Router实现导航</h1>
+            <ul>
+                <li><router-link to="/">杨玉环</router-link></li>
+                <li><router-link to="/chan">貂蝉</router-link></li>
+                <li><router-link to="/shi">西施</router-link></li>
+                <li><router-link to="/jun">王昭君</router-link></li>
+            </ul>
+            <hr />
+            <router-view />
+        </div>
+        <script>
+            //创建组件
+            const huan={template:`<div>杨玉环大妹子</div>`}
+            const chan={template:`<div>貂蝉大妹子</div>`}
+            const shi={template:`<div>西施大妹子</div>`}
+            const jun={template:`<div>王昭君大妹子</div>`}
+            //声明路由
+            const router=new VueRouter({
+                routes:[
+                    {path:'/',component:huan,name:"huan"},
+                    {path:'/chan',component:chan,name:"chan"},
+                    {path:'/shi',component:shi,name:"shi"},
+                    {path:'/jun',component:jun,name:"jun"},
+                ]
+            })
+            var vm = new Vue({
+                router,
+            }).$mount('#app')
+        </script>
+    </body>
+</html>

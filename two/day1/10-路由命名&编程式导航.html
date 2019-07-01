@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>嵌套路由</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <router-view />
+        </div>
+        <script>
+            //定义组件
+            const app={
+                template:`
+                <div>
+                <div class="header">头部</div>    
+                <div class="nav">
+                    <span @click="gouser">用户管理</span><br />
+                    <span @click="gogoods">商品管理</span><br />
+                    </div>      
+                    <div class="main">
+                        <router-view></router-view>
+                        </div>  
+                </div>
+                `,
+                methods:{
+                    gogoods(){
+                        this.$router.push({path:'/user'})
+                    },
+                    gouser(){
+                        this.$router.push({path:'/goods'})
+                    }
+                }
+            }
+            const user={
+                template:`<div>用户管理内容</div>`
+            }
+            const goods={
+                template:`<div>商品管理内容</div>`
+            }
+            //创建路由
+            const router=new VueRouter({
+                routes:[
+                    {path:'/',
+                    component:app,
+                    children:[
+                        //声明app组件的子组件
+                        //语法：{path：子组件路径，component：组件}
+                        //访问：父路径子路径
+                        //效果：子组件的内容会填充到付的坑里面
+                        {path:'goods',component:goods},
+                        {path:'user',component:user}
+                    ]
+                    },
+                    // {path:'/goods',component:goods},
+                    // {path:'/user',component:user}
+                ]
+            })
+            //注册激活
+            let vm = new Vue({
+                router,
+                el: '#app',
+                data: {
+
+                }
+            })
+        </script>
+    </body>
+</html>
